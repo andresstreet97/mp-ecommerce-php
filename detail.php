@@ -46,7 +46,7 @@
 <body class="as-theme-light-heroimage">
     <?php
         require __DIR__ .  '/vendor/autoload.php';
-        MercadoPago\SDK::setAccessToken('TEST-6406976755917276-060219-2717c44d2bfe7d73b56a42adbe7c1850-1053473348');
+        MercadoPago\SDK::setAccessToken('APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398');
         MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
         $payer = new MercadoPago\Payer();
         $preference = new MercadoPago\Preference();
@@ -191,7 +191,7 @@
             </div>
         </div>
         <script>
-                const mp = new MercadoPago('TEST-332f532d-c842-4e1b-a21f-3c63bab8c878', {
+                const mp = new MercadoPago('APP_USR-ee70a80f-0848-4b7f-991d-497696acbdcd', {
                     locale: 'es-AR'
                 })
                 const checkout = mp.checkout({
