@@ -13,6 +13,7 @@
     crossorigin="anonymous"></script>
     
     <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <script src="https://www.mercadopago.com/v2/security.js" view="home"></script>
 
     <link rel="stylesheet" href="./assets/category-landing.css" media="screen, print">
 
@@ -76,12 +77,12 @@
                         "installments" => 6
             );
 
-        $preference->notification_url = "https://gmf1973-mp-ecommerce-php.herokuapp.com/webhook.php";
+        $preference->notification_url = "https://andresstreet97-mp-commerce-php.herokuapp.com/webhook.php";
         $preference->external_reference = "andresstreet97@gmail.com";
         $preference->back_urls = array(
-            "success" => "https://gmf1973-mp-ecommerce-php.herokuapp.com/success.php",
-            "failure" => "https://gmf1973-mp-ecommerce-php.herokuapp.com/failure.php",
-            "pending" => "https://gmf1973-mp-ecommerce-php.herokuapp.com/pending.php"
+            "success" => "https://andresstreet97-mp-commerce-php.herokuapp.com/success.php",
+            "failure" => "https://andresstreet97-mp-commerce-php.herokuapp.com/failure.php",
+            "pending" => "https://andresstreet97-mp-commerce-php.herokuapp.com/pending.php"
         );
         $preference->auto_return = "approved";
         $preference->save();
