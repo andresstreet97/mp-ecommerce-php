@@ -11,6 +11,8 @@
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"></script>
+    
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
 
     <link rel="stylesheet" href="./assets/category-landing.css" media="screen, print">
 
@@ -42,7 +44,52 @@
 
 
 <body class="as-theme-light-heroimage">
+    <?php
+        require __DIR__ .  '/vendor/autoload.php';
+        MercadoPago\SDK::setAccessToken('APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398');
+        MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
+        $payer = new MercadoPago\Payer();
+        $preference = new MercadoPago\Preference();
+        $item = new MercadoPago\Item();
+    
+        $item->id = "0124";
+        $item->description = "Dispositivo móvil de Tienda e-commerce";
+        $item->picture_url = $_POST['img'];
+        $item->title = $_POST['title'];
+        $item->quantity = $_POST['unit'];
+        $item->unit_price = $_POST['price'];
+        
+        $payer = new MercadoPago\Payer();
+        $payer->name = "Lalo";
+        $payer->surname = "Landa";
+        $payer->email = "test_user_63274575@testuser.com";
+        $payer->phone = array("area_code" => "11", "number" => "3417457224");
+    
+        $payer->address = array("street_name" => "Falsa", "street_number" => 123, "zip_code" => "2000");
+    
+        $preference->items = array($item);
+        $preference->payer = $payer;
+        $preference->payment_methods = array(
+            "excluded_payment_methods" => array(
+              array("id" => "visa")
+            ),
+            "excluded_payment_types" => array(
+              array("id" => "credit_card")
+            ),
+            "installments" => 6
+          );
 
+        $preference->notification_url = "https://gmf1973-mp-ecommerce-php.herokuapp.com/webhook.php";
+        $preference->external_reference = "andresstreet97@gmail.com";
+        $preference->back_urls = array(
+            "success" => "https://gmf1973-mp-ecommerce-php.herokuapp.com/success.php",
+            "failure" => "https://gmf1973-mp-ecommerce-php.herokuapp.com/failure.php",
+            "pending" => "https://gmf1973-mp-ecommerce-php.herokuapp.com/pending.php"
+        );
+        $preference->auto_return = "approved";
+        $preference->save();
+
+    ?>
     <div class="stack">
         
         <div class="as-search-wrapper" role="main">
@@ -130,7 +177,7 @@
                                             <?php echo "$" . $_POST['unit'] ?>
                                         </h3>
                                     </div>
-                                    <button type="submit" class="mercadopago-button" formmethod="post">Pagar la compra</button>
+                                    <button type="submit" class="mercadopago-button" onclick='checkout.open()'>Pagar la compra</button>
                                 </div>
                             </div>
                         </div>
@@ -146,5 +193,16 @@
                 </div>
             </div>
         </div>
+        <script>
+                const mp = new MercadoPago('APP_USR-ee70a80f-0848-4b7f-991d-497696acbdcd', {
+                    locale: 'es-AR'
+                })
+                const checkout = mp.checkout({
+                    preference: {
+                        id: '<?php echo $preference->id; ?>'
+                    }
+                 });  
+                
+            </script>
 
 </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div id="ac-gn-viewport-emitter"> </div></body></html>
