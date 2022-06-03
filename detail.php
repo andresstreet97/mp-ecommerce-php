@@ -47,7 +47,7 @@
     <?php
         require __DIR__ .  '/vendor/autoload.php';
         MercadoPago\SDK::setAccessToken('TEST-6406976755917276-060219-2717c44d2bfe7d73b56a42adbe7c1850-1053473348');
-        //MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
+        MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
         $payer = new MercadoPago\Payer();
         $preference = new MercadoPago\Preference();
         $item = new MercadoPago\Item();
