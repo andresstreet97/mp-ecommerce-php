@@ -69,15 +69,12 @@
     
         $preference->items = array($item);
         $preference->payer = $payer;
-        /*$preference->payment_methods = array(
-            "excluded_payment_methods" => array(
-              array("id" => "visa")
-            ),
-            "excluded_payment_types" => array(
-              array("id" => "credit_card")
-            ),
-            "installments" => 6
-          );*/
+        $preference->payment_methods = array(
+                        "excluded_payment_methods" => array(
+                          array("id" => "visa")
+                        ),
+                        "installments" => 6
+            );
 
         $preference->notification_url = "https://gmf1973-mp-ecommerce-php.herokuapp.com/webhook.php";
         $preference->external_reference = "andresstreet97@gmail.com";
