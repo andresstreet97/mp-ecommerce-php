@@ -47,7 +47,7 @@
     <?php
         require __DIR__ .  '/vendor/autoload.php';
         MercadoPago\SDK::setAccessToken('TEST-6406976755917276-060219-2717c44d2bfe7d73b56a42adbe7c1850-1053473348');
-        MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
+        //MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
         $payer = new MercadoPago\Payer();
         $preference = new MercadoPago\Preference();
         $item = new MercadoPago\Item();
@@ -69,7 +69,7 @@
     
         $preference->items = array($item);
         $preference->payer = $payer;
-        $preference->payment_methods = array(
+        /*$preference->payment_methods = array(
             "excluded_payment_methods" => array(
               array("id" => "visa")
             ),
@@ -77,7 +77,7 @@
               array("id" => "credit_card")
             ),
             "installments" => 6
-          );
+          );/*
 
         $preference->notification_url = "https://gmf1973-mp-ecommerce-php.herokuapp.com/webhook.php";
         $preference->external_reference = "andresstreet97@gmail.com";
