@@ -77,7 +77,7 @@
               array("id" => "credit_card")
             ),
             "installments" => 6
-          );/*
+          );*/
 
         $preference->notification_url = "https://gmf1973-mp-ecommerce-php.herokuapp.com/webhook.php";
         $preference->external_reference = "andresstreet97@gmail.com";
