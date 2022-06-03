@@ -52,10 +52,10 @@
         $payer = new MercadoPago\Payer();
         $preference = new MercadoPago\Preference();
         $item = new MercadoPago\Item();
-    
+        $directorio = "https://andresstreet97-mp-commerce-php.herokuapp.com/assets/";
         $item->id = "0124";
         $item->description = "Dispositivo móvil de Tienda e-commerce";
-        $item->picture_url = $_POST['img'];
+        $item->picture_url = $directorio . $_POST['img'];
         $item->title = $_POST['title'];
         $item->quantity = $_POST['unit'];
         $item->unit_price = $_POST['price'];
